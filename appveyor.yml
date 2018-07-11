@@ -16,12 +16,12 @@ cache:
   - dist-newstyle
 
 build_script:
-  # Temporary hack: there's something hanging in thes unit tests, so do them first
-  - cabal new-run cabal-install:unit-tests
   - cabal new-configure --enable-tests
   - appveyor-retry cabal new-build lib:Cabal --only-dependencies
   - cabal new-build lib:Cabal
   - appveyor-retry cabal new-build Cabal:tests --only-dependencies
+  # Temporary hack: there's something hanging in thes unit tests, so do them first
+  - cabal new-run cabal-install:unit-tests
   - cabal new-test Cabal
   - appveyor-retry cabal new-build exe:cabal exe:cabal-tests --only-dependencies
   - cabal new-build exe:cabal
