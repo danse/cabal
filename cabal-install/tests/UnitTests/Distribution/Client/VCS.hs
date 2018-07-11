@@ -56,18 +56,18 @@ tests mtimeChange =
     [ testProperty "darcs" (prop_framework_darcs mtimeChange)
     | enableDarcsTests
     ]
-  , testGroup "cloneSourceRepo" $
-    [ testProperty "git"    prop_cloneRepo_git
-    ] ++
-    [ testProperty "darcs" (prop_cloneRepo_darcs mtimeChange)
-    | enableDarcsTests
-    ]
-  , testGroup "syncSourceRepos" $
-    [ testProperty "git"    prop_syncRepos_git
-    ] ++
-    [ testProperty "darcs" (prop_syncRepos_darcs mtimeChange)
-    | enableDarcsTests
-    ]
+--  , testGroup "cloneSourceRepo" $
+--    [ testProperty "git"    prop_cloneRepo_git
+--    ] ++
+--    [ testProperty "darcs" (prop_cloneRepo_darcs mtimeChange)
+--    | enableDarcsTests
+--    ]
+--  , testGroup "syncSourceRepos" $
+--    [ testProperty "git"    prop_syncRepos_git
+--    ] ++
+--    [ testProperty "darcs" (prop_syncRepos_darcs mtimeChange)
+--    | enableDarcsTests
+--    ]
   ]
   where
     -- for the moment they're not yet working
