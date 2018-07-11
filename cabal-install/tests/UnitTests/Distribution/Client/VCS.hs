@@ -56,12 +56,12 @@ tests mtimeChange =
     [ testProperty "darcs" (prop_framework_darcs mtimeChange)
     | enableDarcsTests
     ]
---  , testGroup "cloneSourceRepo" $
---    [ testProperty "git"    prop_cloneRepo_git
---    ] ++
---    [ testProperty "darcs" (prop_cloneRepo_darcs mtimeChange)
---    | enableDarcsTests
---    ]
+  , testGroup "cloneSourceRepo" $
+    [ testProperty "git"    prop_cloneRepo_git
+    ] ++
+    [ testProperty "darcs" (prop_cloneRepo_darcs mtimeChange)
+    | enableDarcsTests
+    ]
 --  , testGroup "syncSourceRepos" $
 --    [ testProperty "git"    prop_syncRepos_git
 --    ] ++
@@ -155,10 +155,8 @@ prop_framework :: VCS Program
                              -> FilePath -> VCSTestDriver)
                -> RepoRecipe
                -> IO ()
-prop_framework vcs mkVCSTestDriver repoRecipe = do
-    putStrLn "TEMPORARY DEBUG LOGGING: prop_framework"
-    testSetup vcs mkVCSTestDriver repoRecipe $ \vcsDriver tmpdir repoState -> do
-      putStrLn "TEMPORARY DEBUG LOGGING: prop_framework loop"
+prop_framework vcs mkVCSTestDriver repoRecipe =
+    testSetup vcs mkVCSTestDriver repoRecipe $ \vcsDriver tmpdir repoState ->
       mapM_ (checkAtTag vcsDriver tmpdir) (Map.toList (allTags repoState))
   where
     -- Check for any given tag/commit in the 'RepoState' that the working state
@@ -168,12 +166,10 @@ prop_framework vcs mkVCSTestDriver repoRecipe = do
         -- We handle two cases: inplace checkouts for VCSs that support it
         -- (e.g. git) and separate dir otherwise (e.g. darcs)
         Left checkoutInplace -> do
-          putStrLn "TEMPORARY DEBUG LOGGING: checkAtTag Left"
           checkoutInplace tagname
           checkExpectedWorkingState vcsIgnoreFiles vcsRepoRoot expectedState
 
         Right checkoutCloneTo -> do
-          putStrLn "TEMPORARY DEBUG LOGGING: checkAtTag Right"
           checkoutCloneTo tagname destRepoPath
           checkExpectedWorkingState vcsIgnoreFiles destRepoPath expectedState
           removeDirectoryRecursiveHack silent destRepoPath
