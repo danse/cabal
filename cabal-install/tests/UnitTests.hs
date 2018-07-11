@@ -76,8 +76,8 @@ tests mtimeChangeCalibrated =
        UnitTests.Distribution.Client.InstallPlan.tests
   , testGroup "UnitTests.Distribution.Client.VCS" $
        UnitTests.Distribution.Client.VCS.tests mtimeChange
---  , testGroup "UnitTests.Distribution.Client.Get"
---       UnitTests.Distribution.Client.Get.tests
+  , testGroup "UnitTests.Distribution.Client.Get"
+       UnitTests.Distribution.Client.Get.tests
   ]
 
 main :: IO ()
