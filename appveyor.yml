@@ -6,7 +6,7 @@ install:
   - refreshenv
   # See http://help.appveyor.com/discussions/problems/6312-curl-command-not-found#comment_42195491
   # NB: Do this after refreshenv, otherwise it will be clobbered!
-  - set PATH=%APPDATA%\cabal\bin;C:\Program Files\Git\mingw64\bin;C:\msys64\usr\bin;%PATH%
+  - set PATH=%APPDATA%\cabal\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\msys64\usr\bin;%PATH%
   - cabal --version
   - cabal %CABOPTS% update
   - cabal %CABOPTS% install happy alex
