@@ -14,6 +14,7 @@ install:
 environment:
   global:
     CABOPTS:  "--store-dir=C:\\SR"
+    GIT_TRACE: "1"
     # This is just for debugging.
     APPVEYOR_RDP_PASSWORD: "haskell/cabal#5351"
 
