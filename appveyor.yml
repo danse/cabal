@@ -1,3 +1,10 @@
+# This is just for debugging.
+environment:
+  APPVEYOR_RDP_PASSWORD: "haskell/cabal#5351"
+
+init:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
 install:
   # Using '-y' and 'refreshenv' as a workaround to:
   # https://github.com/haskell/cabal/issues/3687
