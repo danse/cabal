@@ -23,6 +23,7 @@ init:
 
 cache:
   - dist-newstyle
+  - "C:\\sr"
 
 build_script:
   - cabal %CABOPTS% new-configure --enable-tests
